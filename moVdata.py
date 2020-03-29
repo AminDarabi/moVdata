@@ -1,9 +1,3 @@
-import pandas   as pandas
-import sys      as sys
-import os       as os
-import re       as re
-
-
 ### CONSTANTS START
 def _CONST(NAME):
     if NAME == 'REP_RULES':
@@ -35,7 +29,7 @@ def _CONST(NAME):
 
 ### ARGS_HANDLING FUNC START
 def ARGS_HANDLING():
-    
+
     if len(sys.argv) < 2:
         print("WRONG ARGUMANT")
         print("TYPE  -h or help  TO USE MANUAL")
@@ -78,7 +72,7 @@ def HELP():
 
 ### PROCESS FUNC START
 def PROCESS(SRT_FILE):
-
+    
     Name    = input('Enter movie\'s Name: ')
     file    = open(SRT_FILE, 'r').read().lower()
 
@@ -176,6 +170,9 @@ def BACKUP():
 ##  this function check is DB avalibale or create it
 def DB_check():
 
+    # import os
+    # import pandas
+
     if os.path.isdir(_CONST('PATH_DIR')) == False:
         os.makedirs(_CONST('PATH_DIR'))
 
@@ -200,6 +197,20 @@ def DB_check():
 
 
 ##### NON FUNC PART
+
+try:
+    import fastparquet  as FASTPARQUET
+    import pandas       as pandas
+    import sys          as sys
+    import os           as os
+    import re           as re
+except ImportError as e:
+    print(e)
+    print("This project needs pandas sys os re shutil fastparquet pakages.")
+    exit(2)
+
 if __name__ == '__main__':
     ARGS_HANDLING()
+
+exit(0)
 ##### NON FUNC PART
